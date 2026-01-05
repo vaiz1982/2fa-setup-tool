@@ -1,0 +1,58 @@
+# System files
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Backup files
+*.backup.*
+backup/
+*.old
+
+# Sensitive data
+*.secret
+*.key
+*.pem
+*.crt
+*.auth
+google_authenticator_*
+secrets/
+tokens/
+
+# Logs
+*.log
+logs/
+/var/log/
+
+# Temporary files
+/tmp/
+/temp/
+*.tmp
+
+# User configuration
+.user-config
+.local/
+.config/
+
+# IDE/Editor files
+.vscode/
+.idea/
+*.code-workspace
+
+# OS specific
+*_history
+.bash_history
+.ssh/known_hosts
+
+# Script generated
+test-config/
+test-output/
+setup-test/
+
+# Backup of system files (created by script)
+system-backups/
+
+# Test files
+test-*.sh
+*.test
