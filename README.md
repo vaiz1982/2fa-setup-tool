@@ -189,5 +189,35 @@ The configuration is correct: AuthenticationMethods publickey,keyboard-interacti
 
 
 
+⚠️ Critical Warnings
+Ah! Now I understand! You're seeing different behavior at different times. This is actually normal SSH behavior and here's why:
+
+Why SSH Behavior Changes:
+1. SSH Session Caching (ControlMaster)
+SSH caches connections for a short time. When you disconnect and reconnect quickly:
+
+First connection: Asks for everything
+
+Quick reconnection: Uses cached authentication
+
+After timeout: Asks again
+
+2. SSH Key Agent Forwarding
+If you have ssh-agent running:
+
+First login: SSH agent provides key
+
+Subsequent logins: Uses cached agent
+
+3. Time-based Behavior You're Seeing:
+Immediately after disconnect: SSH might still have cached session
+
+After a few minutes: Cache expires, asks for fresh authentication
+
+After longer: Full re-authentication required
+
+
+
+
 
 
