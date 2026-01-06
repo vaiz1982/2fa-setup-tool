@@ -92,6 +92,18 @@ Less secure than requiring both
 
 
 
+./setup-2fa.sh          # Interactive setup
+./setup-2fa.sh status   # Check current 2FA status
+./setup-2fa.sh revert   # Remove 2FA and restore backups
+./setup-2fa.sh test     # Test configuration
+./setup-2fa.sh help     # Show help
+
+
+
+
+
+
+
 
 
 
