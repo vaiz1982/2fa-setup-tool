@@ -219,6 +219,6 @@ After longer: Full re-authentication required
 
 
 
-<img width="628" height="229" alt="Screenshot 2026-01-05 at 23 04 57" src="https://github.com/user-attachments/assets/9d2df38f-2179-43e9-ac99-59a3fdedb65a" />
+ 
 
 
