@@ -107,5 +107,87 @@ Less secure than requiring both
 
 
 
+⚠️ Critical Warnings
+Select authentication method:
+1) SSH Key + Google Authenticator (BOTH required - RECOMMENDED)
+2) Password + Google Authenticator (BOTH required)
+3) SSH Key OR Google Authenticator (either one works)
+Enter choice (1/2/3): 1
+ why i choose both but when i log in and out it only ask for google ?
+
+
+he issue is in your script! When you choose Option 1 (SSH Key + Google Authenticator), it should ask for BOTH, but it's only asking for Google Authenticator because:
+
+The Problem:
+SSH Key authentication happens automatically - SSH uses your private key without asking
+
+Google Authenticator is asked interactively - You see the prompt
+
+So it IS working correctly - you just don't see the SSH key part because it happens automatically!
+
+What's Actually Happening:
+When you SSH with a key:
+
+SSH automatically authenticates with your private key (silent)
+
+Then SSH asks for Google Authenticator code (visible)
+
+Both are required, but only one is visible to you
+
+To Test That BOTH Are Required:
+Test 1: Try without SSH key
+
+# Try connecting WITHOUT your SSH key
+ssh ubuntu@13.62.229.152
+
+
+
+It should FAIL because you need the SSH key.
+
+Test 2: Try with wrong Google Auth code
+
+
+# Try connecting WITH key but wrong Google Auth code
+ssh -i /home/xela/.ssh/Task2.pem ubuntu@13.62.229.152
+# Enter WRONG code (like 111111)
+It should FAIL because the Google Auth code is wrong
+
+
+
+On the server, check:
+sudo tail -f /var/log/auth.log
+The Script is Working Correctly!
+Your script IS configured for "SSH Key + Google Authenticator (BOTH required)". Here's what it sets:
+
+
+
+AuthenticationMethods publickey,keyboard-interactive
+PasswordAuthentication no
+PubkeyAuthentication yes
+
+
+
+Summary:
+Your script IS WORKING CORRECTLY! When using SSH keys:
+
+SSH key authentication is automatic (no prompt)
+
+Google Authenticator shows a prompt
+
+Both are required for authentication
+
+The configuration is correct: AuthenticationMethods publickey,keyboard-interactive means BOTH are required, even though only one shows a prompt.
+
+
+
+
+
+
+
+
+
+
+
+
 
 
